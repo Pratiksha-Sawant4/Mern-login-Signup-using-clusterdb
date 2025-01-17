@@ -14,18 +14,16 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            // const response = await axios.post('http://localhost:5000/api/auth/login', formData);
+            // Extracting email and password from formData
+            const { email, password } = formData;
 
-            // // Extracting email and password from formData
-            // const { email, password } = formData;
-
-            // Second axios post request
-            await axios.post('https://mern-login-signup-using-clusterdb-api.vercel.app/auth', { email, password });
+            // Sending a POST request to your backend
+            const response = await axios.post('https://mern-login-signup-using-clusterdb-api.vercel.app/api/auth/login', { email, password });
 
             alert('Login successful');
             console.log(response.data);
         } catch (error) {
-            alert(error.response.data.message || 'An error occurred');
+            alert(error.response?.data?.message || 'An error occurred');
         }
     };
 
