@@ -6,12 +6,6 @@ import '../styles.css'; // Import styles
 function Login() {
 
       axios.defaults.withCredentials = true;
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        axios.post('https://mern-login-signup-using-clusterdb-api.vercel.app/mernsignup',{email, password})
-        .then(result => console.log(result))
-        .catch(err => console.log(err))
-    }
     const [formData, setFormData] = useState({ email: '', password: '' });
 
     const handleChange = (e) => {
@@ -22,6 +16,8 @@ function Login() {
         e.preventDefault();
         try {
             const response = await axios.post('http://localhost:5000/api/auth/login', formData);
+                      axios.post('https://mern-login-signup-using-clusterdb-api.vercel.app/mernsignup',{email, password})
+
             alert('Login successful');
             console.log(response.data);
         } catch (error) {
