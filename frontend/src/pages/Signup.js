@@ -35,7 +35,7 @@ function Signup() {
             const { name, email, mobile, address, password, confirmPassword } = formData;
 
             // Second axios post request
-            await axios.post('https://mern-login-signup-using-clusterdb-api.vercel.app/mernsignup', {
+            await axios.post('https://mern-login-signup-using-clusterdb-api.vercel.app/register', {
                 name,
                 email,
                 mobile,
