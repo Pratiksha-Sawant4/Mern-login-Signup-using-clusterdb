@@ -14,10 +14,10 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5000/api/auth/login', formData);
+            // const response = await axios.post('http://localhost:5000/api/auth/login', formData);
 
-            // Extracting email and password from formData
-            const { email, password } = formData;
+            // // Extracting email and password from formData
+            // const { email, password } = formData;
 
             // Second axios post request
             await axios.post('https://mern-login-signup-using-clusterdb-api.vercel.app/register', { email, password });
