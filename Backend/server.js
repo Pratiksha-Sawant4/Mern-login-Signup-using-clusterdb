@@ -8,16 +8,13 @@ dotenv.config();
 
 const app = express();
 
-// CORS configuration
-const corsOptions = {
-  origin: 'https://mern-login-signup-using-clusterdb-frontend.vercel.app', // Frontend domain
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allowed methods
-  credentials: true // Allow credentials
-};
-
 // Middleware
-app.use(cors(corsOptions));
 app.use(express.json());
+app.use(cors({
+    origin: 'https://mern-login-signup-using-clusterdb-frontend.vercel.app', // Frontend domain
+    methods: 'GET,POST,PUT,DELETE,OPTIONS',
+    credentials: true // Allow credentials (cookies, authorization headers, etc.)
+}));
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URI, {
@@ -36,8 +33,6 @@ app.get('/', (req, res) => {
 // Export app for Vercel
 module.exports = app;
 
-// Server Port (only for local development)
-if (process.env.NODE_ENV !== 'production') {
-  const PORT = process.env.PORT || 5000;
-  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-}
+// Server Port
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
