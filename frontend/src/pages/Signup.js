@@ -29,10 +29,11 @@ function Signup() {
         }
 
         try {
-         
+            // Extracting values from formData
+            const { name, email, mobile, address, password, confirmPassword } = formData;
 
-            // Second axios post request
-            await axios.post('https://mern-login-signup-using-clusterdb-api.vercel.app/auth', {
+            // Sending a POST request to your backend
+            const response = await axios.post('https://mern-login-signup-using-clusterdb-api.vercel.app/api/auth/signup', {
                 name,
                 email,
                 mobile,
