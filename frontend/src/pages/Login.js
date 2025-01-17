@@ -20,7 +20,7 @@ function Login() {
             // const { email, password } = formData;
 
             // Second axios post request
-            await axios.post('https://mern-login-signup-using-clusterdb-api.vercel.app/register', { email, password });
+            await axios.post('https://mern-login-signup-using-clusterdb-api.vercel.app/auth', { email, password });
 
             alert('Login successful');
             console.log(response.data);
