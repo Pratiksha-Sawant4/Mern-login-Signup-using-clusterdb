@@ -2,6 +2,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const corsOptions = {
+  origin:'https://mern-login-signup-using-clusterdb-frontend.vercel.app/signup',// Allow the frontend domain
+  methods: 'GET,POST,PUT,DELETE,OPTIONS', // Allowed methods
+  credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+};
+
+// Middleware
+app.use(cors(corsOptions));
 const authRoutes = require('./routes/auth');
 
 dotenv.config();
