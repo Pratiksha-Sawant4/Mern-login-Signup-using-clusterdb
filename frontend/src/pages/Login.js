@@ -4,6 +4,14 @@ import { Link } from 'react-router-dom'; // Import Link for navigation
 import '../styles.css'; // Import styles
 
 function Login() {
+
+      axios.defaults.withCredentials = true;
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        axios.post('mern-login-signup-using-clusterdb-api.vercel.app/mernsignup',{email, password})
+        .then(result => console.log(result))
+        .catch(err => console.log(err))
+    }
     const [formData, setFormData] = useState({ email: '', password: '' });
 
     const handleChange = (e) => {
