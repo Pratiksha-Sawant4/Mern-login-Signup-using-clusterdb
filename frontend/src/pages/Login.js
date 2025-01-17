@@ -8,7 +8,7 @@ function Login() {
       axios.defaults.withCredentials = true;
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('mern-login-signup-using-clusterdb-api.vercel.app/mernsignup',{email, password})
+        axios.post('https://mern-login-signup-using-clusterdb-api.vercel.app/mernsignup',{email, password})
         .then(result => console.log(result))
         .catch(err => console.log(err))
     }
