@@ -4,32 +4,28 @@ import { Link } from 'react-router-dom'; // Import Link for navigation
 import '../styles.css'; // Import styles
 
 function Login() {
-    // Ensure axios requests send credentials like cookies if needed
     axios.defaults.withCredentials = true;
-
-    // State to store form data
     const [formData, setFormData] = useState({ email: '', password: '' });
 
-    // Handle input changes
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    // Handle form submission
     const handleSubmit = async (e) => {
-        e.preventDefault(); // Prevent default form submission behavior
-
+        e.preventDefault();
         try {
-            const { email, password } = formData;
+            // const response = await axios.post('http://localhost:5000/api/auth/login', formData);
 
-            // Send POST request to backend
-            const response = await axios.post('https://mern-login-signup-using-clusterdb-api.vercel.app/api/auth/login', { email, password });
+            // // Extracting email and password from formData
+            // const { email, password } = formData;
+
+            // Second axios post request
+            await axios.post('https://mern-login-signup-using-clusterdb-api.vercel.app/auth', { email, password });
 
             alert('Login successful');
             console.log(response.data);
         } catch (error) {
-            // Handle error by displaying an appropriate message
-            alert(error.response?.data?.message || 'An error occurred');
+            alert(error.response.data.message || 'An error occurred');
         }
     };
 
@@ -65,4 +61,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default Login; 
