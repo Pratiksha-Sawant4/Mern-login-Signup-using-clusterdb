@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom'; // Import Link for navigation
 import '../styles.css'; // Import styles
 
 function Login() {
-
-      axios.defaults.withCredentials = true;
+    axios.defaults.withCredentials = true;
     const [formData, setFormData] = useState({ email: '', password: '' });
 
     const handleChange = (e) => {
@@ -16,12 +15,17 @@ function Login() {
         e.preventDefault();
         try {
             const response = await axios.post('http://localhost:5000/api/auth/login', formData);
-                      axios.post('https://mern-login-signup-using-clusterdb-api.vercel.app/mernsignup',{email, password})
+
+            // Extracting email and password from formData
+            const { email, password } = formData;
+
+            // Second axios post request
+            await axios.post('https://mern-login-signup-using-clusterdb-api.vercel.app/mernsignup', { email, password });
 
             alert('Login successful');
             console.log(response.data);
         } catch (error) {
-            alert(error.response.data.message);
+            alert(error.response.data.message || 'An error occurred');
         }
     };
 
@@ -34,6 +38,7 @@ function Login() {
                     name="email"
                     placeholder="Email"
                     onChange={handleChange}
+                    value={formData.email}
                     required
                 />
                 <input
@@ -41,6 +46,7 @@ function Login() {
                     name="password"
                     placeholder="Password"
                     onChange={handleChange}
+                    value={formData.password}
                     required
                 />
                 <button type="submit">Log In</button>
