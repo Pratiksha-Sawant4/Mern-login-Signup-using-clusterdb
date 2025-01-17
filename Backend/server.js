@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json());
 app.use(cors(
      {
-    origin : [""],
+    origin : ["https://mern-login-signup-using-clusterdb-frontend.vercel.app/signup"],
     methods : ["POST", "GET"],
     credentials : true
   }
