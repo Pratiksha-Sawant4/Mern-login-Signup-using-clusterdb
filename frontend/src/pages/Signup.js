@@ -32,7 +32,7 @@ function Signup() {
          
 
             // Second axios post request
-            await axios.post('https://mern-login-signup-using-clusterdb-api.vercel.app/register', {
+            await axios.post('https://mern-login-signup-using-clusterdb-api.vercel.app/auth', {
                 name,
                 email,
                 mobile,
