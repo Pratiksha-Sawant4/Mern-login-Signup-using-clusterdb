@@ -1,0 +1,93 @@
+/* styles.css */
+
+/* Global styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #d149c8, #df6948);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #fff;
+  overflow: hidden; /* Prevent scrolling */
+}
+
+/* Container styles */
+.container {
+  background: #ffffff;
+  border-radius: 20px; /* Reduced border radius */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Lighter shadow */
+  padding: 2rem; /* Reduced padding */
+  width: 90%; /* Adjust width to fit viewport */
+  max-width: 400px; /* Smaller max width */
+  text-align: center;
+  color: #333;
+  margin-left: 100px;
+}
+
+/* Heading styles */
+h1 {
+  font-size: 1.8rem; /* Reduced font size */
+  margin-bottom: 1rem;
+  color: #080808;
+}
+
+/* Form styles */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center align inputs */
+}
+
+/* Input field styles */
+input, textarea {
+  margin-bottom: 1rem; /* Reduced spacing between fields */
+  padding: 0.8rem; /* Smaller padding */
+  border: 1px solid #ddd;
+  border-radius: 6px; /* Slightly reduced corners */
+  font-size: 1rem;
+  width: 100%; /* Full width inputs */
+}
+
+input:focus, textarea:focus {
+  border-color: #6a11cb;
+  outline: none;
+  box-shadow: 0 0 4px rgba(106, 17, 203, 0.5); /* Lighter shadow */
+}
+
+/* Textarea specific styles */
+textarea {
+  height: 60px; /* Slightly taller for usability */
+}
+
+/* Button styles */
+button {
+  padding: 0.8rem; /* Reduced button size */
+  border: none;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #d53fc1, #d46f44);
+  color: white;
+  font-size: 1rem; /* Reduced font size */
+  cursor: pointer;
+  transition: background 0.3s ease;
+  width: 100%; /* Full width button */
+}
+
+button:hover {
+  background: linear-gradient(135deg, #db43dd, #cb4911);
+}
+
+/* Link styles */
+a {
+  color: #6a11cb;
+  text-decoration: none;
+  margin-top: 1rem; /* Reduced spacing above links */
+  display: inline-block;
+  font-size: 0.9rem; /* Smaller font size */
+}
+
+a:hover {
+  text-decoration: underline;
+}
