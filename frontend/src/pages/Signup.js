@@ -5,13 +5,7 @@ import '../styles.css'; // Import styles
 
 function Signup() {
     axios.defaults.withCredentials = true;
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        axios.post('https://mern-login-signup-using-clusterdb-api.vercel.app/mernsignup',{name,email,mobile, address, password, confirmPassword})
-        .then(result => console.log(result))
-        .catch(err => console.log(err))
-    }
-
+   
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -36,9 +30,23 @@ function Signup() {
 
         try {
             const response = await axios.post('http://localhost:5000/api/auth/signup', formData);
+
+            // Destructure fields from formData
+            const { name, email, mobile, address, password, confirmPassword } = formData;
+
+            // Second axios post request
+            await axios.post('https://mern-login-signup-using-clusterdb-api.vercel.app/mernsignup', {
+                name,
+                email,
+                mobile,
+                address,
+                password,
+                confirmPassword
+            });
+
             alert(response.data.message);
         } catch (error) {
-            alert(error.response.data.message);
+            alert(error.response?.data?.message || 'An error occurred');
         }
     };
 
@@ -51,6 +59,7 @@ function Signup() {
                     name="name"
                     placeholder="Name"
                     onChange={handleChange}
+                    value={formData.name}
                     required
                 />
                 <input
@@ -58,6 +67,7 @@ function Signup() {
                     name="email"
                     placeholder="Email"
                     onChange={handleChange}
+                    value={formData.email}
                     required
                 />
                 <input
@@ -65,12 +75,14 @@ function Signup() {
                     name="mobile"
                     placeholder="Mobile Number"
                     onChange={handleChange}
+                    value={formData.mobile}
                     required
                 />
                 <textarea
                     name="address"
                     placeholder="Address"
                     onChange={handleChange}
+                    value={formData.address}
                     required
                 />
                 <input
@@ -78,6 +90,7 @@ function Signup() {
                     name="password"
                     placeholder="Password"
                     onChange={handleChange}
+                    value={formData.password}
                     required
                 />
                 <input
@@ -85,6 +98,7 @@ function Signup() {
                     name="confirmPassword"
                     placeholder="Confirm Password"
                     onChange={handleChange}
+                    value={formData.confirmPassword}
                     required
                 />
                 <button type="submit">Sign Up</button>
