@@ -29,10 +29,7 @@ function Signup() {
         }
 
         try {
-            const response = await axios.post('http://localhost:5000/api/auth/signup', formData);
-
-            // Destructure fields from formData
-            const { name, email, mobile, address, password, confirmPassword } = formData;
+         
 
             // Second axios post request
             await axios.post('https://mern-login-signup-using-clusterdb-api.vercel.app/register', {
