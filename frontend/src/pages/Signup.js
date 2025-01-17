@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; // Import Link for navigation
-import '../styles.css'; // Import styles
+import { Link } from 'react-router-dom';
+import '../styles.css';
 
 function Signup() {
     axios.defaults.withCredentials = true;
@@ -15,22 +15,30 @@ function Signup() {
         confirmPassword: '', 
     });
 
+    const [loading, setLoading] = useState(false); // Added loading state
+    const [errorMessage, setErrorMessage] = useState(''); // Added error state
+
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true); // Start loading
+
+        // Clear previous error
+        setErrorMessage('');
 
         // Check if passwords match
         if (formData.password !== formData.confirmPassword) {
-            alert("Passwords do not match!");
+            setErrorMessage("Passwords do not match!");
+            setLoading(false);
             return;
         }
 
         try {
             // Extracting values from formData
-            const { name, email, mobile, address, password, confirmPassword } = formData;
+            const { name, email, mobile, address, password } = formData;
 
             // Sending a POST request to your backend
             const response = await axios.post('https://mern-login-signup-using-clusterdb-api.vercel.app/api/auth/signup', {
@@ -38,13 +46,14 @@ function Signup() {
                 email,
                 mobile,
                 address,
-                password,
-                confirmPassword
+                password
             });
 
             alert(response.data.message);
         } catch (error) {
-            alert(error.response?.data?.message || 'An error occurred');
+            setErrorMessage(error.response?.data?.message || 'An error occurred');
+        } finally {
+            setLoading(false); // Stop loading
         }
     };
 
@@ -99,8 +108,11 @@ function Signup() {
                     value={formData.confirmPassword}
                     required
                 />
-                <button type="submit">Sign Up</button>
+                <button type="submit" disabled={loading}>
+                    {loading ? 'Signing Up...' : 'Sign Up'}
+                </button>
             </form>
+            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>} {/* Error message */}
             <p>
                 Already have an account?{' '}
                 <Link to="/login" style={{ color: '#6a11cb', textDecoration: 'none' }}>
